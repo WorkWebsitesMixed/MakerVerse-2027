@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<!--
+  MakerVerse 2027 - Student Handbook (single-page site)
+
+  What this file is:
+    The whole student handbook for the MakerVerse 2027 innovation challenge, as one static
+    HTML page (Tailwind via CDN, no build step) so it can be hosted on GitHub Pages.
+
+  How it fits in:
+    Derived from the 2026 edition (WorkWebsitesMixed/MakerVerse). This year the challenges are
+    ASSIGNED (not chosen freely), the theme is environmental problems solved with AI-assisted
+    coding ("vibe coding"), and the rubric rewards real impact and learning AI tools.
+    Hosts: Marymount School Medellin and The Columbus School. Participants: Cumbres, Montessori.
+
+  Sections (same order as the sidebar): intro, eligibility, design thinking, challenges,
+  rubric, rules, schedule, mentors.
+
+  Placeholders: anything written as "TBC" is not decided yet. Search for "TBC" before publishing.
+-->
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MakerVerse 2027 | Student Handbook</title>
+    <meta name="description"
+        content="MakerVerse 2027: four Medellín schools use AI-assisted coding and real measurements to solve environmental problems.">
+
+    <!-- Tailwind via CDN: no build step needed, which keeps the repo easy for students to read. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome icons. (The 2026 link had a typo, "c ss", so icons never loaded; fixed here.) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;800&display=swap"
+        rel="stylesheet">
+    <script>
+        // Brand colours and fonts used across the page.
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#003366',   // Columbus-ish blue
+                            mary: '#005baa',   // Marymount-ish blue
+                            green: '#10b981',  // Sustainability
+                            accent: '#f59e0b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Slim scrollbar for the sidebar and main column */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Rubric tables: visible grid so judges can read across a row */
+        .rubric-table th,
+        .rubric-table td { border: 1px solid #e2e8f0; padding: 0.75rem; vertical-align: top; }
+        .rubric-table th { background-color: #f8fafc; font-weight: 600; }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Mobile header: only the two HOST logos appear in the header. -->
+    <header
+        class="lg:hidden bg-white border-b border-gray-200 sticky top-0 z-50 px-4 py-3 flex justify-between items-center shadow-sm">
+        <div class="flex items-center gap-3">
+            <div class="flex gap-2 bg-gray-50 p-1 rounded">
+                <img src="Marymount Logo.jpg" alt="Marymount" class="h-8 w-auto">
+                <img src="Colombus Logo.png" alt="Columbus" class="h-8 w-auto">
+            </div>
+            <div class="font-display font-bold text-brand-blue text-sm leading-tight">
+                MakerVerse 2027<br>
+                <span class="text-xs text-gray-500 font-normal">Student Handbook</span>
+            </div>
+        </div>
+        <button onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')"
+            class="text-gray-600 focus:outline-none p-2" aria-label="Open menu">
+            <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+    </header>
+
+    <div class="flex h-screen overflow-hidden">
+
+        <!-- Sidebar navigation (desktop: fixed; mobile: slides in) -->
+        <aside id="sidebar"
+            class="absolute lg:relative w-64 h-full bg-white border-r border-gray-200 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 z-40 flex flex-col shadow-xl lg:shadow-none">
+            <div class="p-6 border-b border-gray-100 bg-brand-blue text-white text-center">
+                <div class="flex justify-center items-center gap-3 mb-4 bg-white/10 p-3 rounded-xl backdrop-blur-sm">
+                    <img src="Marymount Logo.jpg" alt="Marymount Logo" class="h-10 w-auto bg-white rounded shadow-sm p-0.5">
+                    <img src="Colombus Logo.png" alt="Columbus Logo" class="h-10 w-auto bg-white rounded shadow-sm p-0.5">
+                </div>
+                <h1 class="font-display font-bold text-xl">MakerVerse 2027</h1>
+                <p class="text-xs text-blue-200 mt-1">Hosted by Marymount and Columbus</p>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto custom-scroll p-4 space-y-1 text-sm">
+                <a href="#intro" class="block px-3 py-2 rounded-md hover:bg-blue-50 hover:text-brand-blue transition font-medium">Introduction</a>
+                <a href="#eligibility" class="block px-3 py-2 rounded-md hover:bg-blue-50 hover:text-brand-blue transition font-medium">Eligibility &amp; Registration</a>
+                <a href="#design-thinking" class="block px-3 py-2 rounded-md hover:bg-blue-50 hover:text-brand-blue transition font-medium">Design Thinking</a>
+                <a href="#challenges" class="block px-3 py-2 rounded-md hover:bg-blue-50 hover:text-brand-blue transition font-medium">The Challenges</a>
+                <a href="#roles" class="block px-3 py-2 rounded-md hover:bg-blue-50 hover:text-brand-blue transition font-medium">Team Roles</a>
+                <a href="#rubric" class="block px-3 py-2 rounded-md hover:bg-blue-50 hover:text-brand-blue transition font-bold text-brand-blue">Detailed Rubric</a>
+                <a href="#principles" class="block px-3 py-2 rounded-md hover:bg-blue-50 hover:text-brand-blue transition font-medium">Principles &amp; Rules</a>
+                <a href="#schedule" class="block px-3 py-2 rounded-md hover:bg-blue-50 hover:text-brand-blue transition font-medium">Schedule</a>
+                <a href="#mentors" class="block px-3 py-2 rounded-md hover:bg-blue-50 hover:text-brand-blue transition font-medium">Mentors &amp; Schools</a>
+            </nav>
+
+            <div class="p-4 border-t border-gray-100">
+                <a href="https://form.jotform.com/252785283543061" target="_blank" rel="noopener"
+                    class="block w-full text-center bg-brand-green text-white py-2 rounded-lg font-bold hover:bg-green-600 transition shadow-sm">
+                    Register Now
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main content column -->
+        <main class="flex-1 overflow-y-auto custom-scroll scroll-smooth bg-gray-50" id="main-content">
+            <div class="max-w-4xl mx-auto px-6 py-10 lg:py-16 space-y-16">
+
+                <!-- ============ INTRODUCTION ============ -->
+                <section id="intro" class="text-center space-y-6 pb-8 border-b border-gray-200">
+                    <!-- Only the two hosts get a logo; the other schools are participants. -->
+                    <div class="flex justify-center items-center gap-8 mb-4">
+                        <img src="Marymount Logo.jpg" alt="Marymount School" class="h-24 w-auto object-contain">
+                        <div class="h-16 w-px bg-gray-200"></div>
+                        <img src="Colombus Logo.png" alt="Columbus School" class="h-24 w-auto object-contain">
+                    </div>
+
+                    <span
+                        class="inline-block px-3 py-1 bg-blue-100 text-brand-blue text-xs font-bold uppercase tracking-wider rounded-full">MakerVerse
+                        2027 | Four schools, one city</span>
+                    <h1 class="text-3xl md:text-5xl font-display font-extrabold text-gray-900 leading-tight">
+                        Build with AI. <span class="text-brand-green">Solve for Real.</span>
+                    </h1>
+                    <div class="p-6 bg-white rounded-xl shadow-sm border-l-4 border-brand-green text-left">
+                        <p class="text-lg text-gray-600 italic font-medium">
+                            "AI can help you build almost anything. The question is whether what you build actually
+                            helps someone."
+                        </p>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed text-justify">
+                        Students from Cumbres, Columbus, Montessori and Marymount will team up to tackle real
+                        environmental problems in Medellín, linked to the UN Sustainable Development Goals (SDGs).
+                        This year, <strong>the challenges are given to you</strong>: each one is a real problem with a
+                        clear brief, and you choose the problem inside it that interests you most.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed text-justify">
+                        You will use AI-assisted coding ("vibe coding") and other AI tools to go from idea to working
+                        prototype fast. Because AI makes building easy, we judge two things above all:
+                        <strong>real impact</strong> (does it work, and can you prove it?) and
+                        <strong>what you learn</strong> (can you explain what you built, and have you learned to use
+                        AI tools well and critically?).
+                    </p>
+                </section>
+
+                <!-- ============ ELIGIBILITY ============ -->
+                <section id="eligibility" class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <h2 class="text-2xl font-display font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-clipboard-check text-brand-blue"></i> Eligibility &amp; Registration
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-lg">Who Can Participate?</h3>
+                            <p class="text-gray-600">Students from the four participating schools (Cumbres, Columbus,
+                                Montessori and Marymount) who are curious about technology, the environment and making a
+                                real difference in their city.</p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-lg">Team Formation</h3>
+                            <p class="text-gray-600 mb-2">Registration is individual. The organizers build balanced
+                                teams that mix students from different schools, so you will work with people you do not
+                                know yet. Team size: TBC.</p>
+                            <p class="text-gray-600">Each team distributes the four roles described in
+                                <a href="#roles" class="text-blue-600 underline hover:text-blue-800">Team Roles</a>.</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-yellow-50 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-900">Participation Limit</h4>
+                                <p class="text-sm text-gray-700">Maximum number of teams: TBC.</p>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-900">Important Timeline</h4>
+                                <ul class="text-sm text-gray-700 list-disc list-inside">
+                                    <li>Registration closes: November 19</li>
+                                    <li>Team assignments: TBC</li>
+                                    <li><strong>Event days: November 24 and 30, January 21 and 22</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-bold text-gray-800 text-lg">How to Register</h3>
+                            <p class="text-gray-600">Complete the individual registration form: <a
+                                    href="https://form.jotform.com/252785283543061" target="_blank" rel="noopener"
+                                    class="text-blue-600 underline hover:text-blue-800">Registration Link</a></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============ DESIGN THINKING ============ -->
+                <!-- Kept from 2026: the process is still the backbone. Images are hot-linked from other sites. -->
+                <section id="design-thinking" class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <h2 class="text-2xl font-display font-bold text-gray-900 mb-6">What is Design Thinking?</h2>
+
+                    <img src="https://substackcdn.com/image/fetch/$s_!xjHe!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Feee90998-e47d-4fbf-95a2-dec7dc44c0bd_1400x802.webp"
+                        alt="Design Thinking Process Diagram"
+                        class="w-full h-auto rounded-xl mb-8 shadow-md border border-gray-100">
+
+                    <p class="text-gray-600 mb-6">A solution-based approach to solving problems. Useful for tackling
+                        complex problems that are ill-defined or unknown. In MakerVerse it also protects you from the
+                        biggest risk of vibe coding: building something impressive that nobody needs.</p>
+
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-semibold text-gray-700">1. Empathize</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-semibold text-gray-700">2. Define</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-semibold text-gray-700">3. Ideate</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-semibold text-gray-700">4. Prototype</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-sm font-semibold text-gray-700">5. Test</span>
+                    </div>
+
+                    <div class="bg-white rounded-xl border border-gray-100 overflow-hidden mb-8">
+                        <div class="divide-y divide-gray-100">
+                            <div class="p-5">
+                                <h4 class="font-bold text-gray-800">1. Empathize</h4>
+                                <p class="text-sm text-gray-600">Observe, measure and talk to the people affected. Do not
+                                    guess: find real data about your problem.</p>
+                            </div>
+                            <div class="p-5">
+                                <h4 class="font-bold text-gray-800">2. Define</h4>
+                                <p class="text-sm text-gray-600">Write your problem as a "How might we..." question that
+                                    you can actually test.</p>
+                            </div>
+                            <div class="p-5">
+                                <h4 class="font-bold text-gray-800">3. Ideate</h4>
+                                <p class="text-sm text-gray-600">Brainstorm many ideas, then choose the one that can have
+                                    the most real impact in the time you have.</p>
+                            </div>
+                            <div class="p-5">
+                                <h4 class="font-bold text-gray-800">4. Prototype</h4>
+                                <p class="text-sm text-gray-600">Build it with AI-assisted coding and your hardware kit.
+                                    Keep a log of how you used AI.</p>
+                            </div>
+                            <div class="p-5">
+                                <h4 class="font-bold text-gray-800">5. Test &amp; Present</h4>
+                                <p class="text-sm text-gray-600">Prove it works with measurements or tests with real
+                                    users, then explain the problem, the process, the solution and the impact.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-bold text-gray-900 mb-3">Thinking Styles</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li><strong>Divergent Thinking:</strong> Creating many different ideas.</li>
+                                <li><strong>Convergent Thinking:</strong> Choosing the best few ideas.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900 mb-3">Curiosity Tips</h3>
+                            <ul class="space-y-2 text-sm text-gray-600 list-disc list-inside">
+                                <li>Seek inspiration beyond related contexts.</li>
+                                <li>Adopt a beginner's mindset.</li>
+                                <li>Ask "Why" and "What if".</li>
+                                <li>Frame problems as "How might we...".</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============ CHALLENGES ============ -->
+                <!-- Challenge 1 is defined (three stand-alone problems). Challenge 2 is a placeholder. -->
+                <section id="challenges" class="space-y-8">
+                    <div class="bg-brand-blue text-white p-8 rounded-2xl shadow-lg">
+                        <h2 class="text-2xl font-display font-bold mb-4">The Challenges</h2>
+                        <p class="mb-4">Every challenge is a real environmental problem in our city. Inside each
+                            challenge you will find several problems that can be solved on their own. Your team picks
+                            <strong>one</strong> and goes deep.</p>
+                        <p class="mb-4">The goal is <strong>impact, not inventions</strong>. A device is only a tool for
+                            changing something real. Before you build anything, answer these four questions, and keep
+                            coming back to them:</p>
+                        <ul class="text-sm text-blue-100 list-disc list-inside space-y-1 mb-4">
+                            <li><strong>Who</strong> is affected, and who would be better off?</li>
+                            <li><strong>What</strong> has to change (a decision, a habit, a place) for their life to improve?</li>
+                            <li><strong>Who</strong> has the power to make that change happen, and how will you convince them?</li>
+                            <li><strong>How will we know</strong> it worked? Which number or observation tells us?</li>
+                        </ul>
+                        <p class="text-sm text-blue-100">Whatever you choose, you must show evidence that it works:
+                            measurements, data or tests with real users.</p>
+                    </div>
+
+                    <!-- ---- CHALLENGE 1 ---- -->
+                    <!-- Each problem is written around an IMPACT GOAL (who is better off, what changes), not around a device.
+                         The invention is only the means. Keep that order if you add or edit a problem. -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                        <div class="bg-brand-green text-white p-6">
+                            <span class="text-xs font-bold uppercase tracking-wider opacity-90">Challenge 1 | Engineering</span>
+                            <h3 class="text-2xl font-display font-bold mt-1">Clean Air in the Aburr&aacute; Valley</h3>
+                            <p class="text-sm opacity-90 mt-1">SDG 3 Good Health &amp; Well-being | SDG 11 Sustainable
+                                Cities &amp; Communities | SDG 13 Climate Action</p>
+                        </div>
+                        <div class="p-6 space-y-6">
+                            <p class="text-gray-600">Medellín lives with air pollution, and most of us do not know what
+                                the air at our own school looks like, or what to do about it. You will not be judged on how
+                                clever your device is, but on whether <strong>something real changes</strong> because of
+                                your work. Pick one of the three problems below.</p>
+
+                            <div class="grid md:grid-cols-1 gap-6">
+
+                                <!-- 1A -->
+                                <div class="border border-gray-200 rounded-xl p-5">
+                                    <h4 class="font-display font-bold text-lg text-brand-blue"><span class="text-brand-green">1A.</span> Making the Invisible Air Visible</h4>
+                                    <p class="text-sm italic text-gray-500 mb-3">How might we help our school community make better decisions on days when the air is bad?</p>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li><strong>The problem:</strong> official stations are far away, and nobody at school knows
+                                            whether today is a good day to do PE outdoors or to keep the windows open. Data that
+                                            nobody sees or trusts changes nothing.</li>
+                                        <li><strong>Impact goal:</strong> students, teachers and coordinators change a real decision
+                                            (for example moving PE indoors or ventilating differently) because they received a clear,
+                                            trusted alert.</li>
+                                        <li><strong>Your mission:</strong> find out who needs to know what, when, and in what form.
+                                            Then build the lowest-cost way to measure and alert, with levels you define and justify.
+                                            Agree with a real decision-maker (a teacher or coordinator) what the school does at
+                                            each alert.</li>
+                                        <li><strong>Deliver:</strong> a working station, an action protocol agreed with a decision-maker,
+                                            the total cost in pesos, and a pilot of at least one to two weeks.</li>
+                                        <li><strong>Prove the impact:</strong> data compared with an official source (so people can trust it),
+                                            and a record of the decisions that changed during the pilot.</li>
+                                    </ul>
+                                </div>
+
+                                <!-- 1B -->
+                                <div class="border border-gray-200 rounded-xl p-5">
+                                    <h4 class="font-display font-bold text-lg text-brand-blue"><span class="text-brand-green">1B.</span> Cleaner Air in Every Classroom</h4>
+                                    <p class="text-sm italic text-gray-500 mb-3">How might we give every classroom cleaner air at a cost a school can actually afford?</p>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li><strong>The problem:</strong> with windows open, polluted street air comes in (including
+                                            dust from construction work near the school); with windows closed, CO2 and
+                                            particles build up. Commercial purifiers are too expensive to put in every room, so
+                                            most students breathe whatever the room gives them.</li>
+                                        <li><strong>Impact goal:</strong> many classrooms, not just one prototype, end up with measurably
+                                            cleaner air, because your solution is cheap and simple enough for others to copy.</li>
+                                        <li><strong>Your mission:</strong> design a low-cost way to clean classroom air, but think
+                                            beyond the first unit: who would build the rest, how much would it cost, and could
+                                            another school do it too? Test it in a real room and improve it.</li>
+                                        <li><strong>Deliver:</strong> a tested prototype, a build guide that someone outside your team
+                                            could follow, the cost per classroom, and a plan to equip the rest of the school.</li>
+                                        <li><strong>Prove the impact:</strong> particle measurements before and after in a test
+                                            classroom, the improvement you get per peso spent, and notes on noise, power use and
+                                            electrical safety.</li>
+                                    </ul>
+                                    <p class="text-xs text-gray-500 mt-3"><i class="fa-solid fa-triangle-exclamation text-brand-accent"></i>
+                                        Safety: any test with a fan or mains electricity must be supervised by a mentor first.</p>
+                                </div>
+
+                                <!-- 1C -->
+                                <div class="border border-gray-200 rounded-xl p-5">
+                                    <h4 class="font-display font-bold text-lg text-brand-blue"><span class="text-brand-green">1C.</span> Breathe Easier at the Gate</h4>
+                                    <p class="text-sm italic text-gray-500 mb-3">How might we reduce the pollution students breathe while they wait to arrive or be picked up?</p>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li><strong>The problem:</strong> at arrival and pick-up, buses, cars and motorbikes gather with
+                                            engines running, right where students wait. Drivers and families rarely know they are
+                                            part of the problem.</li>
+                                        <li><strong>Impact goal:</strong> a measurable drop in what students breathe at the gate, because
+                                            the people who cause the pollution change what they do.</li>
+                                        <li><strong>Your mission:</strong> understand who is at the gate and why engines stay on. Measure
+                                            when and where the air is worst, then design and test an intervention that changes
+                                            behavior (a waiting zone, a schedule, signs, a message to families). Measuring is how
+                                            you find the problem and prove the change; the change itself is your goal.</li>
+                                        <li><strong>Deliver:</strong> a map or graph of the pollution peaks, a tested intervention, and
+                                            the message or plan you would take to the school administration.</li>
+                                        <li><strong>Prove the impact:</strong> measurements before and after your intervention, plus a
+                                            count of behavior change (for example how many drivers turned engines off).</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-50 p-4 rounded-lg text-sm text-gray-600">
+                                <strong class="text-gray-800">Kit and tools:</strong> hardware kit and approved AI tools: TBC.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ---- CHALLENGE 2 (placeholder) ---- -->
+                    <div class="bg-white rounded-2xl border-2 border-dashed border-gray-300 p-6 text-center">
+                        <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Challenge 2</span>
+                        <h3 class="text-xl font-display font-bold text-gray-500 mt-1">Coming soon</h3>
+                        <p class="text-sm text-gray-400 mt-1">Title, SDGs and problems: TBC.</p>
+                    </div>
+                </section>
+
+                <!-- ============ TEAM ROLES ============ -->
+                <!-- Roles kept from 2026; the technical role now mentions AI tools. Confirm team size before publishing. -->
+                <section id="roles" class="space-y-6">
+                    <h2 class="text-2xl font-display font-bold text-gray-900">Team Roles and Responsibilities</h2>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="border border-gray-200 p-4 rounded-lg bg-white">
+                            <h4 class="font-bold text-gray-800 mb-2"><i class="fa-solid fa-tasks text-purple-500 mr-2"></i>Project Manager</h4>
+                            <ul class="text-sm text-gray-600 list-disc list-inside">
+                                <li>Oversees the whole process.</li>
+                                <li>Distributes tasks and meets deadlines.</li>
+                                <li>Liaison with mentors and judges.</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 p-4 rounded-lg bg-white">
+                            <h4 class="font-bold text-gray-800 mb-2"><i class="fa-solid fa-paint-brush text-pink-500 mr-2"></i>Creative Designer</h4>
+                            <ul class="text-sm text-gray-600 list-disc list-inside">
+                                <li>Visual and physical design.</li>
+                                <li>Sketches and 3D models.</li>
+                                <li>Makes the solution easy and pleasant to use.</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 p-4 rounded-lg bg-white">
+                            <h4 class="font-bold text-gray-800 mb-2"><i class="fa-solid fa-microchip text-blue-500 mr-2"></i>Technical Expert</h4>
+                            <ul class="text-sm text-gray-600 list-disc list-inside">
+                                <li>Electronics, code and data.</li>
+                                <li>Leads the use of AI coding tools and checks what they produce.</li>
+                                <li>Makes data-driven decisions.</li>
+                            </ul>
+                        </div>
+                        <div class="border border-gray-200 p-4 rounded-lg bg-white">
+                            <h4 class="font-bold text-gray-800 mb-2"><i class="fa-solid fa-bullhorn text-orange-500 mr-2"></i>Communicator</h4>
+                            <ul class="text-sm text-gray-600 list-disc list-inside">
+                                <li>Pitching and storytelling.</li>
+                                <li>Documents the journey (photo, video, AI use log).</li>
+                                <li>Shows the real impact of the project.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500">Roles organize the work, they do not limit what you learn: every
+                        team member must be able to explain how the whole project works.</p>
+                </section>
+
+                <!-- ============ RUBRIC ============ -->
+                <!-- 40 points in total: Ideate 12 + Craft 16 + Share 12. Every criterion is scored 1 to 4.
+                     Same structure as 2026, but the criteria now reward proven impact and AI learning. -->
+                <section id="rubric" class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                    <div class="bg-brand-blue text-white p-6">
+                        <h2 class="text-2xl font-display font-bold">Design Challenge Rubric</h2>
+                        <p class="opacity-90 mt-2">Teams are evaluated in three categories: Ideate (30%), Craft (40%)
+                            and Share (30%). Maximum total: 40 points. Each criterion is scored from 1 to 4.</p>
+                    </div>
+
+                    <!-- 1. IDEATE -->
+                    <div class="p-6 overflow-x-auto">
+                        <h3 class="text-xl font-bold text-brand-blue mb-4 border-b border-gray-200 pb-2">1. IDEATE (30% - 12 pts max)</h3>
+                        <p class="text-sm text-gray-600 mb-4">Evaluates how well you understood the problem and how
+                            promising and original your idea is.</p>
+                        <table class="w-full text-sm text-left rubric-table min-w-[800px]">
+                            <thead>
+                                <tr>
+                                    <th class="w-1/5">Criteria</th>
+                                    <th class="w-1/5">Beginning (1 pt)</th>
+                                    <th class="w-1/5">Developed (2 pts)</th>
+                                    <th class="w-1/5">Accomplished (3 pts)</th>
+                                    <th class="w-1/5">Exemplary (4 pts)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Problem Understanding</td>
+                                    <td>Describes the problem in general terms; no local data or affected people identified</td>
+                                    <td>Identifies who is affected and uses some general information about the problem</td>
+                                    <td>Uses real local data or observations and explains who is affected and why it matters</td>
+                                    <td class="bg-blue-50">Shows deep understanding built on their own measurements or interviews, and a precise, testable problem statement</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Relevance &amp; Impact Potential</td>
+                                    <td>Loosely connected to the chosen problem; unclear who would use it</td>
+                                    <td>Addresses the chosen problem; the benefit is described but not realistic yet</td>
+                                    <td>Clearly solves the chosen problem, links to the relevant SDGs, and could be used in a real school</td>
+                                    <td class="bg-blue-50">Realistic, scalable solution with transformative potential that a school could adopt tomorrow</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Creativity &amp; Originality</td>
+                                    <td>Basic idea; follows the most obvious solution</td>
+                                    <td>Some creative thinking; attempts a new approach</td>
+                                    <td>Original concept and unique way of solving the problem</td>
+                                    <td class="bg-blue-50">Highly innovative solution with exceptional originality and fresh perspectives</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 2. CRAFT -->
+                    <div class="p-6 overflow-x-auto bg-gray-50">
+                        <h3 class="text-xl font-bold text-brand-blue mb-4 border-b border-gray-200 pb-2">2. CRAFT (40% - 16 pts max)</h3>
+                        <p class="text-sm text-gray-600 mb-4">Evaluates whether it works, whether you can prove it, and
+                            how well you used AI tools to build it.</p>
+                        <table class="w-full text-sm text-left rubric-table min-w-[800px]">
+                            <thead>
+                                <tr>
+                                    <th class="w-1/5">Criteria</th>
+                                    <th class="w-1/5">Beginning (1 pt)</th>
+                                    <th class="w-1/5">Developed (2 pts)</th>
+                                    <th class="w-1/5">Accomplished (3 pts)</th>
+                                    <th class="w-1/5">Exemplary (4 pts)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Working Solution</td>
+                                    <td>A prototype with some working parts</td>
+                                    <td>A prototype that identifies which parts work and which do not</td>
+                                    <td>A prototype that works with few bugs and has a plan for future development</td>
+                                    <td class="bg-blue-50">A prototype that works reliably, in real conditions, and articulates clear next iterations</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Evidence of Impact</td>
+                                    <td>No measurements or user tests; claims are based on opinion</td>
+                                    <td>Some data or a single informal test</td>
+                                    <td>Clear data or user tests that show the solution does what it claims, with a comparison (for example before and after, or against an official source)</td>
+                                    <td class="bg-blue-50">Convincing evidence, with limits and uncertainty honestly stated, showing real benefit for real users</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Strategic Use of AI Tools</td>
+                                    <td>Uses AI to generate code or content but accepts the results without checking</td>
+                                    <td>Uses one AI tool for one purpose and checks some of its output</td>
+                                    <td>Uses AI tools for different purposes (for example coding, data analysis, design) and verifies and corrects the results</td>
+                                    <td class="bg-blue-50">Chooses the right AI tool for each task, writes strong prompts, catches AI mistakes, and can say where AI helped and where it did not</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Iteration &amp; Troubleshooting</td>
+                                    <td>Minimal testing or troubleshooting evident</td>
+                                    <td>Some evidence of testing and problem-solving</td>
+                                    <td>Clear documentation of testing cycles and the improvements they led to</td>
+                                    <td class="bg-blue-50">Comprehensive troubleshooting journey with several iterations, each based on evidence</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 3. SHARE -->
+                    <div class="p-6 overflow-x-auto">
+                        <h3 class="text-xl font-bold text-brand-blue mb-4 border-b border-gray-200 pb-2">3. SHARE (30% - 12 pts max)</h3>
+                        <p class="text-sm text-gray-600 mb-4">Evaluates whether every team member understands the
+                            project, how well the process is documented, and how clearly you communicate.</p>
+                        <table class="w-full text-sm text-left rubric-table min-w-[800px]">
+                            <thead>
+                                <tr>
+                                    <th class="w-1/5">Criteria</th>
+                                    <th class="w-1/5">Beginning (1 pt)</th>
+                                    <th class="w-1/5">Developed (2 pts)</th>
+                                    <th class="w-1/5">Accomplished (3 pts)</th>
+                                    <th class="w-1/5">Exemplary (4 pts)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">Understanding &amp; Ownership</td>
+                                    <td>Only one or two members can explain how the solution works</td>
+                                    <td>Most members explain what the solution does but not how it works or why decisions were made</td>
+                                    <td>All members explain how it works and justify key decisions when judges ask questions</td>
+                                    <td class="bg-blue-50">All members explain the whole project in depth, including what they would change and why, and answer unexpected questions confidently</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Process &amp; AI Use Log</td>
+                                    <td>Minimal evidence of the design thinking stages; no record of AI use</td>
+                                    <td>Some documentation of key steps; a partial list of AI tools used</td>
+                                    <td>Documentation of all five stages, plus a log of which AI tools were used, for what, and what had to be corrected</td>
+                                    <td class="bg-blue-50">A compelling record of the whole journey, with an honest AI log that includes prompts that failed and what the team learned from them</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Presentation &amp; Communication</td>
+                                    <td>Information is unclear or hard to follow</td>
+                                    <td>Communicates the main ideas, with room for improvement</td>
+                                    <td>Clear, organized and engaging presentation of the problem, solution and results</td>
+                                    <td class="bg-blue-50">Masterful storytelling that captivates the audience and makes the impact unmistakable</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ============ PRINCIPLES & RULES ============ -->
+                <section id="principles">
+                    <h2 class="text-2xl font-display font-bold text-gray-900 mb-6">Driving Principles &amp; Rules</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-bold text-brand-blue">Success for All</h3>
+                            <p class="text-sm text-gray-600 mb-4">Encourage high-quality work, respect individuals and
+                                the community. Collaboration between competitors.</p>
+
+                            <h3 class="font-bold text-brand-blue">Overcome Obstacles</h3>
+                            <p class="text-sm text-gray-600 mb-4">Learn from mistakes, accept frustration, and
+                                persevere.</p>
+
+                            <h3 class="font-bold text-brand-blue">You Own What You Submit</h3>
+                            <p class="text-sm text-gray-600 mb-4">AI is your tool, not your teammate. You are responsible
+                                for everything you present and you must be able to explain it.</p>
+                        </div>
+                        <div class="bg-gray-100 p-6 rounded-lg text-sm">
+                            <h3 class="font-bold text-gray-900 mb-3">Rules &amp; Regulations Summary</h3>
+                            <ul class="space-y-2 list-disc list-inside text-gray-700">
+                                <li>Behave properly: respect, responsibility, caring, trustworthiness.</li>
+                                <li>Technology is for communication, never to offend.</li>
+                                <li>Use official channels for communication.</li>
+                                <li>Practice safe digital citizenship: do not paste personal data of other people into AI tools.</li>
+                                <li>Keep a log of the AI tools you use.</li>
+                                <li>Sessions may be recorded.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <h3 class="font-bold text-gray-900 mb-2">Tools (Conference Toolkit)</h3>
+                        <p class="text-sm text-gray-600">List of approved AI tools and software: TBC.</p>
+                    </div>
+                </section>
+
+                <!-- ============ SCHEDULE ============ -->
+                <!-- Dates are confirmed; times and activities are not. Replace each TBC when decided. -->
+                <section id="schedule" class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <h2 class="text-2xl font-display font-bold text-gray-900 mb-6">Schedule</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3">Date</th>
+                                    <th class="px-6 py-3">Time</th>
+                                    <th class="px-6 py-3">Event</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white border-b">
+                                    <td class="px-6 py-4 font-bold">Tuesday, November 24</td>
+                                    <td class="px-6 py-4">TBC</td>
+                                    <td class="px-6 py-4">TBC</td>
+                                </tr>
+                                <tr class="bg-gray-50 border-b">
+                                    <td class="px-6 py-4 font-bold">Monday, November 30</td>
+                                    <td class="px-6 py-4">TBC</td>
+                                    <td class="px-6 py-4">TBC</td>
+                                </tr>
+                                <tr class="bg-white border-b">
+                                    <td class="px-6 py-4 font-bold">Thursday, January 21</td>
+                                    <td class="px-6 py-4">TBC</td>
+                                    <td class="px-6 py-4">TBC</td>
+                                </tr>
+                                <tr class="bg-gray-50 border-b">
+                                    <td class="px-6 py-4 font-bold">Friday, January 22</td>
+                                    <td class="px-6 py-4">TBC</td>
+                                    <td class="px-6 py-4">TBC</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4">Venues: Marymount School Medellín and The Columbus School (which
+                        venue hosts which day: TBC).</p>
+                </section>
+
+                <!-- ============ MENTORS & SCHOOLS ============ -->
+                <!-- Same four mentors as 2026. Bios are copied from the 2026 site: confirm they are still current. -->
+                <section id="mentors">
+                    <h2 class="text-2xl font-display font-bold text-gray-900 mb-6">Host Schools &amp; Mentors</h2>
+                    <p class="mb-8 text-gray-600">MakerVerse 2027 is led by Marymount School Medellín and The Columbus
+                        School, and takes place with the participation of Cumbres and Montessori.</p>
+
+                    <div class="space-y-8">
+                        <!-- Julian -->
+                        <div class="bg-white p-6 rounded-xl border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+                            <img src="Julian.jpg" alt="Julian"
+                                class="w-24 h-24 rounded-full object-cover border-4 border-blue-50 shadow-sm flex-shrink-0">
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-900">Julian</h3>
+                                <p class="text-sm text-blue-600 font-medium mb-2">Ed Tech Leader | Columbus School</p>
+                                <p class="text-sm text-gray-600 leading-relaxed">
+                                    HS Robotics and AP Computer Science teacher for more than 15 years. Holds a
+                                    bachelor’s degree in electronics engineering and masters in education. Lead mentor
+                                    of the Robotics FRC team 7403 Lightning Blue Lizards with 14+ years experience in
+                                    robotics competitions.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Andres -->
+                        <div class="bg-white p-6 rounded-xl border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+                            <img src="Andres.png" alt="Andrés Forero"
+                                class="w-24 h-24 rounded-full object-cover border-4 border-blue-50 shadow-sm flex-shrink-0">
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-900">Andrés Forero</h3>
+                                <p class="text-sm text-blue-600 font-medium mb-2">Technical Mentor | Marymount School</p>
+                                <p class="text-sm text-gray-600 leading-relaxed">
+                                    Physicist with a Master's in Bio-nanotechnology. Combines rigorous academic
+                                    knowledge with hands-on maker skills. Avid trail runner. Expert in Electronics, 3D
+                                    Printing, Python/C++, Arduino/ESP32.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Juan Felipe -->
+                        <div class="bg-white p-6 rounded-xl border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+                            <img src="Felipe.png" alt="Juan Felipe Velásquez Restrepo"
+                                class="w-24 h-24 rounded-full object-cover border-4 border-blue-50 shadow-sm flex-shrink-0">
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-900">Juan Felipe Velásquez Restrepo</h3>
+                                <p class="text-sm text-blue-600 font-medium mb-2">Design &amp; Technology Teacher | Marymount School</p>
+                                <p class="text-sm text-gray-600 leading-relaxed">
+                                    Mechanical Engineer with Masters in Engineering and Astronomy. Bridges materials
+                                    science, astrophysics, and maker culture. Former Planetarium Director. Expert in
+                                    Materials Science, Robotics, Python/C++, MATLAB, Fusion 360, Ansys.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Maireth -->
+                        <div class="bg-white p-6 rounded-xl border border-gray-100 flex flex-col md:flex-row gap-6 items-start">
+                            <img src="Maireth.png" alt="Maireth Posada Vásquez"
+                                class="w-24 h-24 rounded-full object-cover border-4 border-blue-50 shadow-sm flex-shrink-0">
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-900">Maireth Posada Vásquez</h3>
+                                <p class="text-sm text-blue-600 font-medium mb-2">Innovation Mentor</p>
+                                <p class="text-sm text-gray-600 leading-relaxed">
+                                    Food engineer specialized in marketing, with a Master’s degree in Innovation. 16
+                                    years of experience in product and process innovation. Creative and resourceful,
+                                    able to find solutions quickly and effectively.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Participating schools: text only, because only the two hosts display logos. -->
+                    <div class="mt-12 p-8 bg-blue-50 rounded-2xl text-center">
+                        <h3 class="font-bold text-gray-900 text-lg mb-2">Participating Schools</h3>
+                        <p class="text-sm text-gray-600">Cumbres &middot; The Columbus School &middot; Montessori &middot; Marymount School Medellín</p>
+                    </div>
+                </section>
+
+                <footer class="text-center text-gray-400 text-sm py-8">
+                    MakerVerse 2027 - Student Handbook Digital Version
+                </footer>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Smooth-scroll for sidebar links, and close the sidebar on mobile after a click.
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                if (window.innerWidth < 1024) {
+                    document.getElementById('sidebar').classList.add('-translate-x-full');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
